@@ -1,12 +1,11 @@
 from queue import Queue
-from sys import argv
-from maze import *
 
 def DFS(G, start, end):
     for v in G.vertices:
         v.discovered = False
     
     Q = Queue()
+    start.discovered = True
     Q.put(start)
     while not Q.empty():
         v = Q.get()
@@ -14,20 +13,10 @@ def DFS(G, start, end):
         if v == end:
             return True
         
-        if v != None and not v.discovered:
-            v.discovered = True
-            for edge in v.edges:
+        for edge in v.edges:
+            if edge != None and not edge.discovered:
+                edge.discovered = True
+                edge.prev = v
                 Q.put(edge)
     
     return False
-
-if __name__ == '__main__':
-    if len(argv) < 2:
-        print("No Maze provided")
-    else:
-        m = maze(argv[1])
-        DFS(m.graph, m.start, m.end)
-        m.path = reconstruct(m.graph, m.end)
-        m.setpath()
-        if len(argv) > 2: m.save(argv[2])
-        else: m.save()

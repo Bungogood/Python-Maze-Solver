@@ -1,6 +1,3 @@
-from sys import argv
-from maze import *
-
 def Astar(G, start, end):
     Q = []
     for v in G.vertices:
@@ -26,14 +23,3 @@ def Astar(G, start, end):
 
 def Heuristic(v, u):
     return ((v.x - u.x)**2 + (v.y - u.y)**2)**.5
-
-if __name__ == '__main__':
-    if len(argv) < 2:
-        print("No Maze provided")
-    else:
-        m = maze(argv[1])
-        Astar(m.graph, m.start, m.end)
-        m.path = reconstruct(m.graph, m.end)
-        m.setpath()
-        if len(argv) > 2: m.save(argv[2])
-        else: m.save()

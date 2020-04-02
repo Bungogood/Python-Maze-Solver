@@ -1,6 +1,3 @@
-from sys import argv
-from maze import *
-
 def Dijkstra(G, start, end):
     Q = []
     for v in G.vertices:
@@ -23,14 +20,3 @@ def Dijkstra(G, start, end):
                     edge.prev = u
     
     return False
-
-if __name__ == '__main__':
-    if len(argv) < 2:
-        print("No Maze provided")
-    else:
-        m = maze(argv[1])
-        Dijkstra(m.graph, m.start, m.end)
-        m.path = reconstruct(m.graph, m.end)
-        m.setpath()
-        if len(argv) > 2: m.save(argv[2])
-        else: m.save()
