@@ -1,4 +1,5 @@
 from sys import argv
+from Methods import *
 from maze import *
 
 if __name__ == "__main__":
@@ -8,19 +9,15 @@ if __name__ == "__main__":
     m = maze(old)
 
     if method == "Astar":
-        from Astar import *
-        Astar(m.graph, m.start, m.end)
+        Astar.Astar(m.graph, m.start, m.end)
     elif method == "BFS":
-        from BFS import *
-        BFS(m.graph, m.start, m.end)
+        BFS.BFS(m.graph, m.start, m.end)
     elif method == "DFS":
-        from DFS import *
-        DFS(m.graph, m.start, m.end)
+        DFS.DFS(m.graph, m.start, m.end)
     elif method == "Dijkstra":
-        from Dijkstra import *
-        Dijkstra(m.graph, m.start, m.end)
+        Dijkstra.Dijkstra(m.graph, m.start, m.end)
     else:
-        raise ValueError("no solver found")
+        raise ValueError("no method found")
 
     m.path = reconstruct(m.graph, m.end)
     m.setpath()
