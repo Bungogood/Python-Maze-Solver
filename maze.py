@@ -27,7 +27,7 @@ class maze:
             prev = None
             for x in range(1, width - 1):
                 if f(x, y):
-                    if f(x+1, y) != f(x-1, y) or f(x, y+1) != f(x, y-1):
+                    if f(x+1, y) != f(x-1, y) or f(x, y+1) != f(x, y-1) or (f(x+1, y) and f(x-1, y) and f(x, y+1) and f(x, y-1)):
                         cur = self.graph.addvertex(x, y)
                         if prev != None:
                                 cur.edges[3] = prev
